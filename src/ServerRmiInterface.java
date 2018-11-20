@@ -8,5 +8,5 @@ public interface ServerRmiInterface extends Remote{
 	public void exampleMethod1() throws RemoteException;
 	public int exampleMethod2() throws RemoteException;
 	
-	public String getDNSIp();
+	public String getDNSIp() throws RemoteException;
 }

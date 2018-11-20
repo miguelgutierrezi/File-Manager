@@ -18,10 +18,9 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface{
 	private String ip;
 	private String DNSIp;
 	
-	public ClientImpl(String name, String DNSIp) throws RemoteException, UnknownHostException {
+	public ClientImpl(String name, String ip) throws RemoteException, UnknownHostException {
 		this.name = name;
-		this.ip = InetAddress.getLocalHost().getHostAddress();
-		this.DNSIp = DNSIp;
+		this.ip = ip;
 	}
 
 	@Override
@@ -49,4 +48,9 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface{
 		this.DNSIp = ip;
 	}
 
+	@Override
+	public void setIp(String ip) throws RemoteException {
+		// TODO Auto-generated method stub
+		this.ip = ip;
+	}
 }

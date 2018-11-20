@@ -19,4 +19,5 @@ public interface ClientInterface extends Remote {
 	public int getId() throws RemoteException;
 	
 	public void setDNSIp(String ip) throws RemoteException;
+	public void setIp(String ip) throws RemoteException;
 }

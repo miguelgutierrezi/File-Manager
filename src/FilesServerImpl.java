@@ -35,14 +35,15 @@ public class FilesServerImpl extends UnicastRemoteObject implements ServerRmiInt
 	@Override
 	public synchronized ClientInterface register(String name, String ip) throws RemoteException, UnknownHostException {
 		ClientInterface newClient = new ClientImpl(name, ip);
+		newClient.setIp(ip);
 		newClient.setId(users.size() + 1);
 		users.add(newClient);
-		System.out.println("Nuevo cliente: " + name + " Ip: " + newClient.getLocalIp());
+		System.out.println("Nuevo cliente: " + name + " Ip: " + ip);
 		return newClient;
 	}
 	
 	@Override
-	public String getDNSIp () {
+	public String getDNSIp () throws RemoteException{
 		return this.ipDNS;
 	}
 }
