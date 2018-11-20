@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 public class Client {
 	private Client() {};
@@ -15,9 +16,15 @@ public class Client {
 			System.out.println("Ip cliente: " + InetAddress.getLocalHost().getHostAddress());
 			System.out.println(client.getId());
 			
-			/*while (true) {
+			while (true) {
+				String s;
+				Scanner scanner = new Scanner(System.in);
+				s = scanner.nextLine();
 				
-			}*/
+				if (s=="quit") {
+					break;
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
