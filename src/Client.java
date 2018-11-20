@@ -13,6 +13,11 @@ public class Client {
 			ServerRmiInterface server = (ServerRmiInterface) Naming.lookup("rmi://" + "169.254.144.240" + "/FilesServer");
 			ClientInterface client = server.register(args[0], InetAddress.getLocalHost().getHostAddress());
 			System.out.println("Ip cliente: " + InetAddress.getLocalHost().getHostAddress());
+			System.out.println(client.getId());
+			
+			/*while (true) {
+				
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -15,8 +15,8 @@ import java.util.LinkedList;
  */
 public class FilesServerImpl extends UnicastRemoteObject implements ServerRmiInterface{
 	
-	private String ipDNS;
 	private LinkedList<ClientInterface> users;
+	private ArrayList<DnsFiles> files;
 	
 	public FilesServerImpl() throws RemoteException {
 		users = new LinkedList<>();
@@ -37,13 +37,21 @@ public class FilesServerImpl extends UnicastRemoteObject implements ServerRmiInt
 		ClientInterface newClient = new ClientImpl(name, ip);
 		newClient.setIp(ip);
 		newClient.setId(users.size() + 1);
+		newClient.populateFiles(newClient.getId());
 		users.add(newClient);
-		System.out.println("Nuevo cliente: " + name + " Ip: " + ip);
+		for (String s: newClient.getFiles()) {
+			/*DnsFiles fil = new DnsFiles(s);
+			fil.addIp(ip);
+			this.files.add(fil);*/
+			System.out.println(s);
+		}
+		System.out.println("Nuevo cliente: " + name + " Ip: " + ip + " Id: " + newClient.getId());
+		/*for (DnsFiles f: this.files) {
+			System.out.println(f.getName());
+			for (String s: f.getIps()) {
+				System.out.println(s);
+			}
+		}*/
 		return newClient;
-	}
-	
-	@Override
-	public String getDNSIp () throws RemoteException{
-		return this.ipDNS;
 	}
 }

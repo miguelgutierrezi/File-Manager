@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -94,6 +95,37 @@ public class Utils {
 		return nombres;
 	}
 	
+	public static String[] getFiles( String dir_path ) {
+
+        String[] arr_res = null;
+
+        java.io.File f = new java.io.File( dir_path );
+
+        if ( f.isDirectory( )) {
+
+            List<String> res   = new ArrayList<>();
+            java.io.File[] arr_content = f.listFiles();
+
+            int size = arr_content.length;
+
+            for ( int i = 0; i < size; i ++ ) {
+
+                if ( arr_content[ i ].isFile( )) {
+                	StringTokenizer tokens = new StringTokenizer(arr_content[i].toString(), "\\");
+                	String token = null;
+        			
+        			while (tokens.hasMoreTokens()) {
+        				token = tokens.nextToken();
+        			}
+                	res.add(token);
+                }
+            }
+            arr_res = res.toArray( new String[ 0 ] );
+        } else
+            System.err.println( "¡ Path NO válido !" );
+        return arr_res;
+    }
+	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		String s;
 		Boolean b = false;
@@ -101,11 +133,20 @@ public class Utils {
 		s = scanner.nextLine();
 		ArrayList<String> nombres = new ArrayList<String>();
 		
-		write_Files(generate_Files(read_InFile(s)));
+		/*write_Files(generate_Files(read_InFile(s)));
 		
 		nombres = readClientFile("cliente.txt");
 		for (String st: nombres) {
 			System.out.println(st);
-		}
+		}*/
+		
+		String path = "C:/Users/migue/OneDrive/Documentos/GitHub/File-Manager/Cliente1";
+        String[] files = getFiles( path );
+        if ( files != null ) {
+            int size = files.length;
+            for ( int i = 0; i < size; i ++ ) {
+                System.out.println( files[ i ] );
+            }
+        }
 	}
 }

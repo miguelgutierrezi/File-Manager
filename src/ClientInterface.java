@@ -20,4 +20,8 @@ public interface ClientInterface extends Remote {
 	
 	public void setDNSIp(String ip) throws RemoteException;
 	public void setIp(String ip) throws RemoteException;
+	
+	public void populateFiles (int user_id) throws RemoteException;
+	
+	public String[] getFiles() throws RemoteException;
 }

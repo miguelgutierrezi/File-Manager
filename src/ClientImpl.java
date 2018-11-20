@@ -2,6 +2,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 /**
  * 
@@ -17,6 +18,7 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface{
 	private int user_id;
 	private String ip;
 	private String DNSIp;
+	String[] files;
 	
 	public ClientImpl(String name, String ip) throws RemoteException, UnknownHostException {
 		this.name = name;
@@ -52,5 +54,26 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface{
 	public void setIp(String ip) throws RemoteException {
 		// TODO Auto-generated method stub
 		this.ip = ip;
+	}
+
+	@Override
+	public void populateFiles(int user_id) throws RemoteException {
+		// TODO Auto-generated method stub
+		if (user_id == 1) {
+			String path = "C:/Users/migue/OneDrive/Documentos/GitHub/File-Manager/Cliente1";
+			files = Utils.getFiles(path);
+		} else if (user_id == 2) {
+			String path = "C:/Users/migue/OneDrive/Documentos/GitHub/File-Manager/Cliente2";
+			files = Utils.getFiles(path);
+		} else if (user_id == 3) {
+			String path = "C:/Users/migue/OneDrive/Documentos/GitHub/File-Manager/Cliente3";
+			files = Utils.getFiles(path);
+		}
+	}
+
+	@Override
+	public String[] getFiles() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this.files;
 	}
 }
