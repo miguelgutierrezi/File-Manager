@@ -41,8 +41,8 @@ public class FilesServerImpl extends UnicastRemoteObject implements ServerRmiInt
 		users.add(newClient);
 		for (String s: newClient.getFiles()) {
 			/*DnsFiles fil = new DnsFiles(s);
-			fil.addIp(ip);
-			this.files.add(fil);*/
+			fil.addIp(ip);*/
+			this.files.add(fil);
 			System.out.println(s);
 		}
 		System.out.println("Nuevo cliente: " + name + " Ip: " + ip + " Id: " + newClient.getId());
